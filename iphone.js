@@ -94,23 +94,24 @@ async function run() {
     await page.goto(url_16);
     await add_to_cart(page);
     await shipping(page);
+    await payment(page);
 }
 
 async function add_to_cart(page) {
 await smart_click_pause(page,"input[data-autom='dimensionScreensize6_3inch']", 0);
 await smart_click_pause(page,"input[value='deserttitanium']", 0);
 await smart_click_pause(page,"input[data=autom='dimensionCapacity256gb']", 0);
-await smart_click_pause(page,"[id='noTradeIn_label']", 0);
-await smart_click_pause(page,"[data-autom='purchaseGroupOptionfullprice_price']", 0);
-await smart_click_pause(page,".form-selector-title.rf-bfe-dimension-simfree", 0);
-await smart_click_pause(page,"[id='applecareplus_59_noapplecare_label']", 0);
-await smart_click_pause(page,'[data-autom="add-to-cart"]',0);
+await smart_click_pause(page,"[id='noTradeIn_label']", 1000);
+await smart_click_pause(page,"[data-autom='purchaseGroupOptionfullprice_price']", 500);
+await smart_click_pause(page,".form-selector-title.rf-bfe-dimension-simfree", 500);
+await smart_click_pause(page,"[id='applecareplus_59_noapplecare_label']", 500);
+await smart_click_pause(page,'[data-autom="add-to-cart"]',500);
 }
 async function shipping(page){
-    await smart_click_pause(page,"button[name='proceed']", 0);
-    await smart_click_pause(page,"[id='shoppingCart.actions.navCheckout']",0)
+    await smart_click_pause(page,"button[name='proceed']", 500);
+    await smart_click_pause(page,"[id='shoppingCart.actions.navCheckout']",1000)
     await smart_click_pause(page,"[id='signIn.guestLogin.guestLogin']",0)
-    await smart_click_pause(page,"id='rs-checkout-continue-button-bottom']",0)
+    await smart_click_pause(page,"id='rs-checkout-continue-button-bottom']",1000)
    
 
     selector ="input[id='checkout.shipping.addressSelector.newAddress.address.firstName']"
@@ -145,14 +146,22 @@ async function payment(page){
     await page.waitForSelector(selector)
     await page.type(selector,"340191313610053");
 
-    await page.type("inpu")
+    await page.type("input[id='checkout.billing.billingOptions.creditCard.cardInputs.cardInput-0.expiration']","02/29");
+    await page.type("input[id='checkout.billing.billingOptions.creditCard.cardInputs.cardInput-0.securityCode']","940");
+
+
+    await page.click("button[id='rs-checkout-continue-button-bottom']")
+
+    await smart_click_pause(page,"button[id='rs-checkout-continue-button-bottom']",0)
+
+
 
 }
 async function smart_click_pause(page,selector,remove){
     
     await page.waitForSelector(selector)
     await page.evaluate((s)=>document.querySelector(s).click(),selector);
-    await new Promise(r=>setTimeout(r,pause));
+    await new Promise(r=>setTimeout(r,1000));
     
    
 }

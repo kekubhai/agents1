@@ -100,18 +100,18 @@ async function run() {
 async function add_to_cart(page) {
 await smart_click_pause(page,"input[data-autom='dimensionScreensize6_3inch']", 0);
 await smart_click_pause(page,"input[value='deserttitanium']", 0);
-await smart_click_pause(page,"input[data=autom='dimensionCapacity256gb']", 0);
-await smart_click_pause(page,"[id='noTradeIn_label']", 1000);
-await smart_click_pause(page,"[data-autom='purchaseGroupOptionfullprice_price']", 500);
-await smart_click_pause(page,".form-selector-title.rf-bfe-dimension-simfree", 500);
-await smart_click_pause(page,"[id='applecareplus_59_noapplecare_label']", 500);
-await smart_click_pause(page,'[data-autom="add-to-cart"]',500);
+await smart_click_pause(page,"input[data-autom='dimensionCapacity256gb']", 500);
+await smart_click_pause(page,'[id="noTradeIn_label"]', 500);
+// await smart_click_pause(page,'[data-autom="purchaseGroupOptionfullprice_price"]', 1000)
+// await smart_click_pause(page,'.form-selector-title.rf-bfe-dimension-simfree', 500)
+await smart_click_pause(page,'[id="applecareplus_59_noapplecare_label"]', 0)
+await smart_click_pause(page,'[data-autom="add-to-cart"]',0)
 }
 async function shipping(page){
-    await smart_click_pause(page,"button[name='proceed']", 500);
+    await smart_click_pause(page,"button[name='proceed']", 0);
     await smart_click_pause(page,"[id='shoppingCart.actions.navCheckout']",1000)
     await smart_click_pause(page,"[id='signIn.guestLogin.guestLogin']",0)
-    await smart_click_pause(page,"id='rs-checkout-continue-button-bottom']",1000)
+    await smart_click_pause(page,"id='rs-checkout-continue-button-bottom']",500)
    
 
     selector ="input[id='checkout.shipping.addressSelector.newAddress.address.firstName']"
